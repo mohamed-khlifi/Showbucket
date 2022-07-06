@@ -1,0 +1,44 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  background-color: #fafafa !important;
+}
+
+.content {
+  margin-left: 20%;
+  width: 80%;
+}
+
+mat-sidenav-container {
+  height: 100% !important;
+}
+
+app-page-header {
+  height: 100px;
+  margin-bottom: 35px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.mat-list-item {
+  font-family: Trade Gothic LT, "Trade Gothic LT", sans-serif !important;
+  font-weight: bold !important;
+}
+
+.container {
+  padding: 1.5rem;
+}
+
+img {
+  border-radius: 20px;
+  padding: 10px;
+}

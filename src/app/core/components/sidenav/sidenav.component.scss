@@ -1,0 +1,135 @@
+$main-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+.left-side {
+  height: 100vh;
+  width: 20% !important;
+  position: fixed;
+
+  mat-card {
+    .mat-card-header-text {
+      width: 100%;
+    }
+
+    .mat-card-header {
+      justify-content: center;
+      display: block;
+    }
+
+    mat-card-content {
+      background-color: #E5E5E5;
+      height: 85vh;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    mat-card-header {
+      background-color: #002c7c;
+      height: 15vh;
+
+      mat-card-title {
+        color: white;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+      }
+    }
+  }
+}
+
+.menu-icon {
+  color: #002c7c;
+  vertical-align: middle;
+  transform: scale(1);
+}
+
+.arrowIcon {
+  color: white;
+  transform: scale(1);
+}
+
+.mat-card-content {
+  text-align: left;
+
+}
+
+.mat-card {
+    padding: 0px !important;
+}
+
+.menu-item {
+  color: #002c7c;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 10px;
+  font-family: $main-font;
+}
+
+.main-menu {
+  padding-top: 30px;
+  padding-left: 10px;
+}
+
+.user, .location {
+  font-family: $main-font;
+  font-weight: bold;
+  color: white;
+}
+
+.user {
+  font-size: 15px;
+}
+
+.location {
+  font-size: 10px;
+}
+
+mat-list {
+  padding-top: 0px;
+
+  mat-list-item {
+    margin-left: -10px;
+
+  }
+}
+
+.mat-card-header-text {
+    margin: auto !important;
+}
+
+
+
+
+mat-list-item:hover {
+  background-color: #d6d6d6;
+}
+
+mat-list:hover {
+  background-color: #d6d6d6;
+}
+
+
+.sidenavDropdown {
+  background-color: transparent;
+  border: 0em;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  display: flex;
+
+}
+
+.row > * {
+  max-width: 100%;
+
+  padding-left: calc(var(--bs-gutter-x) * .5);
+}
+
+.first-mat-card {
+  text-align: center;
+}
