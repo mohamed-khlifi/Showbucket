@@ -40,10 +40,11 @@
         </ng-container>
 
 
-        <ng-container matColumnDef="likeDislike">
-            <th mat-header-cell *matHeaderCellDef>Like / Dislike</th>
+        <ng-container matColumnDef="likeUnlike">
+            <th mat-header-cell *matHeaderCellDef>Like / Unlike</th>
             <td mat-cell *matCellDef="let element">
-                <mat-slide-toggle [(ngModel)]="disliked" (change)="likeDislike()" class="view-own-entries" color="primary">
+                <mat-slide-toggle [(ngModel)]="unliked" (change)="likeUnlike()" class="view-own-entries" color="primary"
+                matTooltip="{{unliked ? 'Unlike' : 'Like'}} the show">
                 </mat-slide-toggle>
             </td>
         </ng-container>

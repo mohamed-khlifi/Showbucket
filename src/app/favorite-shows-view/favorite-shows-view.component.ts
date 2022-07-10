@@ -23,18 +23,18 @@ export class FavoriteShowsViewComponent implements OnInit, OnDestroy {
     this.refresh();
   }
 
-  openDislikeSnackBar() {
-    this.snackBar.open('Show Disliked!', 'x', {
+  openUnlikeSnackBar() {
+    this.snackBar.open('Show Unliked!', 'x', {
       duration: 3000,
       verticalPosition: 'bottom',
       horizontalPosition: 'left',
-      panelClass: "dislike-dialog",
+      panelClass: "unlike-dialog",
     });
   }
 
-  dislikeShow(id: any): void {
+  unlike(id: any): void {
     this.subscription.add(this.getLikes.removeLike(id).subscribe((data: number[]) => {
-      this.openDislikeSnackBar();
+      this.openUnlikeSnackBar();
       this.refresh();
     }));
   }

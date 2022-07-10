@@ -20,10 +20,10 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,private getApi: TvMazeApiService, private getLikes : LikesService, private snackBar: MatSnackBar) { }
   @ViewChild(MatTable) table: MatTable<ShowModel> | undefined;
   show : ShowModel[] = [];
-  disliked = false;
-  displayedColumns = ['name', 'language', 'genre', 'status', 'streamingService', 'tvNetwork', 'likeDislike'];
-  displayedColumnsWithoutStreamingService = ['name', 'language', 'genre', 'status', 'tvNetwork', 'likeDislike'];
-  displayedColumnsWithoutTvNetwork = ['name', 'language', 'genre', 'status', 'streamingService', 'likeDislike'];
+  unliked = false;
+  displayedColumns = ['name', 'language', 'genre', 'status', 'streamingService', 'tvNetwork', 'likeUnlike'];
+  displayedColumnsWithoutStreamingService = ['name', 'language', 'genre', 'status', 'tvNetwork', 'likeUnlike'];
+  displayedColumnsWithoutTvNetwork = ['name', 'language', 'genre', 'status', 'streamingService', 'likeUnlike'];
   private id:  string | any;
   private allLikes: number[] = [];
   private subscription = new Subscription();
@@ -62,7 +62,7 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
             this.allLikes.push(element.id);
           });
           if (this.allLikes.includes(parseInt(this.id))) {
-            this.disliked = true;
+            this.unliked = true;
           }
         }
       ))
@@ -77,21 +77,21 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDislikeSnackBar() {
-    this.snackBar.open('Show Disliked!', 'x', {
+  openUnlikeSnackBar() {
+    this.snackBar.open('Show Unliked!', 'x', {
       duration: 3000,
       verticalPosition: 'bottom',
       horizontalPosition: 'left',
-      panelClass: "dislike-dialog",
+      panelClass: "unlike-dialog",
     });
   }
 
 
-  likeDislike(): void {
-    if (this.disliked == false) {
+  likeUnlike(): void {
+    if (this.unliked == false) {
       this.subscription.add(this.getLikes.removeLike(parseInt(this.id)).subscribe(
-        (data: number[]) => {
-          this.openDislikeSnackBar();
+        () => {
+          this.openUnlikeSnackBar();
         }
       ))
     } else {
