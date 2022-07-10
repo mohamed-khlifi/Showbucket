@@ -18,6 +18,7 @@ import { DetailsViewComponent } from './details-view/details-view.component';
 import { FormsModule } from '@angular/forms';
 import { FavoriteShowsViewComponent } from './favorite-shows-view/favorite-shows-view.component';
 import { SidenavComponent } from './core/components/sidenav/sidenav.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SidenavComponent } from './core/components/sidenav/sidenav.component';
     MatListModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule ,
+    MatSnackBarModule
     
   ],
   providers: [],

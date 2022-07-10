@@ -4,6 +4,7 @@ import { TvMazeApiService } from '../core/services/tv-maze-api.service';
 import {MatTable} from '@angular/material/table';
 import { ShowModel } from '../shared/model/show-model';
 import { Subscription } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   templateUrl: './search-view.component.html',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class SearchViewComponent implements OnInit, OnDestroy {
 
-  constructor(private getApi: TvMazeApiService, private getLikes: LikesService) { }
+  constructor(private getApi: TvMazeApiService, private getLikes: LikesService, private snackBar: MatSnackBar) { }
 
   @ViewChild(MatTable) table: MatTable<ShowModel> | undefined;
   tvShowNames: ShowModel[] = [];
@@ -47,11 +48,30 @@ export class SearchViewComponent implements OnInit, OnDestroy {
       }));
   }
 
+  openLikeSnackBar() {
+    this.snackBar.open('Show Liked!', 'x', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      panelClass: "like-dialog",
+    });
+  }
+
+  openDislikeSnackBar() {
+    this.snackBar.open('Show Disliked!', 'x', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      panelClass: "dislike-dialog",
+    });
+  }
+
   likeShow(id: number): void {
     this.subscription.add(this.getLikes.addLike(id).subscribe(
       {
-        next: data => {
+        next: () => {
           this.allLikes.push(id);
+          this.openLikeSnackBar()
         },
         error: error => {
           console.error('There was an error!', error);
@@ -68,6 +88,7 @@ export class SearchViewComponent implements OnInit, OnDestroy {
       var index = this.allLikes.indexOf(id);
           if (index > -1) {
             this.allLikes.splice(index, 1);
+            this.openDislikeSnackBar()
           }
     }));
   }

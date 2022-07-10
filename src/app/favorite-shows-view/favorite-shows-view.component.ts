@@ -4,6 +4,7 @@ import { TvMazeApiService } from '../core/services/tv-maze-api.service';
 import { MatTable } from '@angular/material/table';
 import { ShowModel } from '../shared/model/show-model';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   templateUrl: './favorite-shows-view.component.html',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class FavoriteShowsViewComponent implements OnInit, OnDestroy {
 
-  constructor(private getLikes: LikesService, private getApi: TvMazeApiService) { }
+  constructor(private getLikes: LikesService, private getApi: TvMazeApiService, private snackBar: MatSnackBar) { }
   @ViewChild(MatTable) table: MatTable<ShowModel> | undefined;
   likedshows: ShowModel[] = [];
   displayedColumns = ['title', 'thumbnail', 'unlike'];
@@ -22,8 +23,18 @@ export class FavoriteShowsViewComponent implements OnInit, OnDestroy {
     this.refresh();
   }
 
+  openDislikeSnackBar() {
+    this.snackBar.open('Show Disliked!', 'x', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      panelClass: "dislike-dialog",
+    });
+  }
+
   dislikeShow(id: any): void {
     this.subscription.add(this.getLikes.removeLike(id).subscribe((data: number[]) => {
+      this.openDislikeSnackBar();
       this.refresh();
     }));
   }

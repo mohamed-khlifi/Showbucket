@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavItemsModel } from 'src/app/shared/model/nav-items-model';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent {
 
-  navItems?: any = [
+  navItems?: NavItemsModel[] = [
     {
         name: 'Search',
         linkTo: '/search',

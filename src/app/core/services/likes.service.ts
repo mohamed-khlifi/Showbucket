@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,19 +14,19 @@ export class LikesService {
 
   allLikes: number[] = [];
 
-  addLike(id: any) {
+  addLike(id: number): Observable<number[]> {
     let url = this.api + 'likes';
-    return this.http.post<any>(url, { id: id });
+    return this.http.post<number[]>(url, { id: id });
   }
 
-  getLikes() {
+  getLikes(): Observable<number[]> {
     const fullurl = `${this.api}likes`
-    return this.http.get<any>(fullurl);
+    return this.http.get<number[]>(fullurl);
   }
 
-  removeLike(id: any) {
+  removeLike(id: number): Observable<number[]> {
     const fullurl = `${this.api}likes/${id}`
-    return this.http.delete<any>(fullurl);
+    return this.http.delete<number[]>(fullurl);
   }
 
 }

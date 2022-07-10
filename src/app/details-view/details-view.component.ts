@@ -5,6 +5,7 @@ import { TvMazeApiService } from '../core/services/tv-maze-api.service';
 import {MatTable} from '@angular/material/table';
 import { ShowModel } from '../shared/model/show-model';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,10 +17,10 @@ import { Subscription } from 'rxjs';
 
 export class DetailsViewComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute,private getApi: TvMazeApiService, private getLikes : LikesService) { }
+  constructor(private route: ActivatedRoute,private getApi: TvMazeApiService, private getLikes : LikesService, private snackBar: MatSnackBar) { }
   @ViewChild(MatTable) table: MatTable<ShowModel> | undefined;
   show : ShowModel[] = [];
-  liked = false;
+  disliked = false;
   displayedColumns = ['name', 'language', 'genre', 'status', 'streamingService', 'tvNetwork', 'likeDislike'];
   displayedColumnsWithoutStreamingService = ['name', 'language', 'genre', 'status', 'tvNetwork', 'likeDislike'];
   displayedColumnsWithoutTvNetwork = ['name', 'language', 'genre', 'status', 'streamingService', 'likeDislike'];
@@ -48,7 +49,7 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id'); 
     
     this.subscription.add(this.getApi.getShow(this.id).subscribe(
-      (data: ShowModel) => {
+      (data: any) => {
         this.show.push(data);
         this.table?.renderRows();   
       }));
@@ -61,25 +62,42 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
             this.allLikes.push(element.id);
           });
           if (this.allLikes.includes(parseInt(this.id))) {
-            this.liked = true;
+            this.disliked = true;
           }
         }
       ))
-
-      
-
   }
+
+  openLikeSnackBar() {
+    this.snackBar.open('Show Liked!', 'x', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      panelClass: "like-dialog",
+    });
+  }
+
+  openDislikeSnackBar() {
+    this.snackBar.open('Show Disliked!', 'x', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+      panelClass: "dislike-dialog",
+    });
+  }
+
+
   likeDislike(): void {
-    if (this.liked == false) {
+    if (this.disliked == false) {
       this.subscription.add(this.getLikes.removeLike(parseInt(this.id)).subscribe(
         (data: number[]) => {
-          console.log(data);
+          this.openDislikeSnackBar();
         }
       ))
     } else {
       this.subscription.add(this.getLikes.addLike(parseInt(this.id)).subscribe(
         (data: number[]) => {
-          console.log(data);
+          this.openLikeSnackBar();
         }
       ))
     }

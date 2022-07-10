@@ -19,13 +19,13 @@
 
     </ng-container>
     <ng-container matColumnDef="likeUnlike">
-      <th mat-header-cell *matHeaderCellDef>Unlike</th>
+      <th mat-header-cell *matHeaderCellDef>Like / Unlike</th>
       <td mat-cell *matCellDef="let element">
-        <button *ngIf="!checkLike(element?.show.id)" style="border: none; background: transparent; cursor: pointer;"
+        <button [disabled]="checkLike(element?.show.id)" style="border: none; background: transparent; cursor: pointer;"
           (click)="likeShow(element?.show.id)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up</mat-icon>
         </button>
-        <button *ngIf="checkLike(element?.show.id)" style="border: none; background: transparent; cursor: pointer;"
+        <button [disabled]="!checkLike(element?.show.id)" style="border: none; background: transparent; cursor: pointer;"
           (click)="dislikeShow(element?.show.id)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">thumb_down_off</mat-icon>
         </button>
