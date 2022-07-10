@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { FavoriteShowsViewComponent } from './favorite-shows-view/favorite-shows-view.component';
 import { SidenavComponent } from './core/components/sidenav/sidenav.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     FormsModule ,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatToolbarModule
     
   ],
   providers: [],
