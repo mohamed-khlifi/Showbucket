@@ -57,12 +57,12 @@ export class SearchViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDislikeSnackBar() {
-    this.snackBar.open('Show Disliked!', 'x', {
+  openUnlikeSnackBar() {
+    this.snackBar.open('Show Unliked!', 'x', {
       duration: 3000,
       verticalPosition: 'bottom',
       horizontalPosition: 'left',
-      panelClass: "dislike-dialog",
+      panelClass: "unlike-dialog",
     });
   }
 
@@ -83,12 +83,12 @@ export class SearchViewComponent implements OnInit, OnDestroy {
     return this.allLikes.includes(id);
   }
 
-  dislikeShow(id: number): void {
+  unlikeShow(id: number): void {
     this.subscription.add(this.getLikes.removeLike(id).subscribe((data: any) => {
       var index = this.allLikes.indexOf(id);
           if (index > -1) {
             this.allLikes.splice(index, 1);
-            this.openDislikeSnackBar()
+            this.openUnlikeSnackBar()
           }
     }));
   }

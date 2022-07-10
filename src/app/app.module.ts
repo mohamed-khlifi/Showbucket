@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailsViewComponent } from './details-view/details-view.component';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +43,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     HttpClientModule,
     FormsModule ,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
     
   ],
   providers: [],

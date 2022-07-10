@@ -21,7 +21,7 @@
     <ng-container matColumnDef="unlike">
       <th mat-header-cell *matHeaderCellDef>Unlike</th>
       <td mat-cell *matCellDef="let element">
-        <button style="border: none; background: transparent; cursor: pointer;" (click)="dislikeShow(element?.id)">
+        <button style="border: none; background: transparent; cursor: pointer;" (click)="unlike(element?.id)"  matTooltip="Unlike the show">
           <mat-icon aria-hidden="false" aria-label="Example home icon">thumb_down_off</mat-icon>
         </button>
       </td>
